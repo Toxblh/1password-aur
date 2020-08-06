@@ -36,7 +36,7 @@ package() {
 
   mkdir -p \"\${pkgdir}/usr/bin/\"
   ln -s \"/opt/\${_pkgname}/\${_binname}\" \"\${pkgdir}/usr/bin\"/
-}" > PKGBUILD
+}" > 1password-bin/PKGBUILD
 
 
 
