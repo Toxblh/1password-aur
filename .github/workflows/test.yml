@@ -15,19 +15,19 @@ jobs:
         uses: 2m/arch-pkgbuild-builder@v1.12
         with:
           target: 'pkgbuild'
-          pkgname: '1password-bin'
+          pkgname: ''
 
       - name: Validate SRCINFO
         id: validate-srcinfo
         uses: 2m/arch-pkgbuild-builder@v1.12
         with:
           target: 'srcinfo'
-          pkgname: '1password-bin'
+          pkgname: '1'
 
       - name: Validate binary
         id: validate-binary
         uses: 2m/arch-pkgbuild-builder@v1.12
         with:
           target: 'run'
-          pkgname: '1password-bin'
+          pkgname: ''
           command: '1password --version'
