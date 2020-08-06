@@ -1,5 +1,6 @@
 name: Update Version of Package
 on:
+  push:
   schedule:
     - cron:  '*/2 * * * *'
 
