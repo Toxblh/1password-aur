@@ -1,7 +1,7 @@
 name: Update Version of Package
 on:
   schedule:
-    - cron:  '*/10 * * * *'
+    - cron:  '*/2 * * * *'
 
 jobs:
   build:
