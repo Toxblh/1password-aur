@@ -1,15 +1,15 @@
 # Update Info
-apt-get update
+sudo apt-get update
 
 # Version of app
-VERSION=`apt-cache show 1password | grep -Po "(Version: )\K(.)*" | head -n 1`
+VERSION=`sudo apt-cache show 1password | grep -Po "(Version: )\K(.)*" | head -n 1`
 
 # Filepath
 # https://onepassword.s3.amazonaws.com/linux/debian/${path}
-FILEPATH=`apt-cache show 1password | grep -Po "(Filename: )\K(.)*" | head -n 1`
+FILEPATH=`sudo apt-cache show 1password | grep -Po "(Filename: )\K(.)*" | head -n 1`
 
 # SHA256
-CHECKSUM=`apt-cache show 1password | grep -Po "(SHA256: )\K(.)*" | head -n 1`
+CHECKSUM=`sudo apt-cache show 1password | grep -Po "(SHA256: )\K(.)*" | head -n 1`
 
 echo "
 {

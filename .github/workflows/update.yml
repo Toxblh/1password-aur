@@ -2,7 +2,7 @@ name: Update Version of Package
 on:
   push:
   schedule:
-    - cron:  '*/2 * * * *'
+    - cron:  '0 12 * * *'
 
 jobs:
   build:
@@ -13,9 +13,9 @@ jobs:
 
     - name: Update dependencies
       run: |
-        apt-get update && apt install gnupg software-properties-common -y
-        apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
-        add-apt-repository 'deb [arch=amd64] https://onepassword.s3.amazonaws.com/linux/debian edge main'
+        sudo apt-get update && apt install gnupg software-properties-common -y
+        sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
+        sudo add-apt-repository 'deb [arch=amd64] https://onepassword.s3.amazonaws.com/linux/debian edge main'
         ./update.sh
 
     - name: Create Pull Request
