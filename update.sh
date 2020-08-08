@@ -37,6 +37,3 @@ package() {
   mkdir -p \"\${pkgdir}/usr/bin/\"
   ln -s \"/opt/\${_pkgname}/\${_binname}\" \"\${pkgdir}/usr/bin\"/
 }" > 1password-bin/PKGBUILD
-
-cd 1password-bin
-makepkg --printsrcinfo > .SRCINFO
