@@ -1,13 +1,13 @@
 # Version of app
-VERSION=`sudo apt-cache show 1password | grep -Po "(Filename: ).*1password-\K([a-z0-9\.-])+\d+" | head -n 1`
+VERSION=`curl -s https://onepassword.s3.amazonaws.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(Filename: ).*1password-\K([a-z0-9\.-])+\d+" | head -n 1`
 AUR_VERSION=`echo $VERSION | grep -Po "(\d+\.)+\d+"`
 
 # Filepath
 # https://onepassword.s3.amazonaws.com/linux/debian/${path}
-FILEPATH=`sudo apt-cache show 1password | grep -Po "(Filename: )\K(.)*" | head -n 1`
+FILEPATH=`curl -s https://onepassword.s3.amazonaws.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(Filename: )\K(.)*" | head -n 1`
 
 # SHA256
-CHECKSUM=`sudo apt-cache show 1password | grep -Po "(SHA256: )\K(.)*" | head -n 1`
+CHECKSUM=`curl -s https://onepassword.s3.amazonaws.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(SHA256: )\K(.)*" | head -n 1`
 
 echo "
 {
@@ -30,6 +30,7 @@ pkgrel=1
 pkgdesc=\"Password manager and secure wallet\"
 arch=('x86_64')
 license=('custom:LicenseRef-1Password-Proprietary')
+depends=(libxss nss gtk3)
 options=(!strip)
 url='https://1password.com/'
 source=(\"https://onepassword.s3.amazonaws.com/linux/debian/pool/main/1/1password/1password-\$_pkgver.deb\")
@@ -39,7 +40,11 @@ package() {
   bsdtar -xv -C \"\${pkgdir}\" -f \"\${srcdir}/data.tar.xz\"
 
   mkdir -p \"\${pkgdir}/usr/bin/\"
-  ln -s \"/opt/\${_pkgname}/\${_binname}\" \"\${pkgdir}/usr/bin\"/
+
+  chmod 644 \"\${pkgdir}/usr/share/polkit-1/actions/com.1password.1Password.policy\"
+  chmod 4755 \"\${pkgdir}/opt/1Password/chrome-sandbox\" || true
+
+  ln -s \"/opt/\${_pkgname}/\${_binname}\" \"\${pkgdir}/usr/bin\"
 }" > 1password-bin/PKGBUILD
 
 echo "\n\nPKGBUILD:\n"
