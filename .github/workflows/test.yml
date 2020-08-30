@@ -10,12 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Validate PKGBUILD
-        id: validate-pkgbuild
-        uses: 2m/arch-pkgbuild-builder@v1.12
-        with:
-          target: 'pkgbuild'
-          pkgname: '1password-bin'
+#       - name: Validate PKGBUILD
+#         id: validate-pkgbuild
+#         uses: 2m/arch-pkgbuild-builder@v1.12
+#         with:
+#           target: 'pkgbuild'
+#           pkgname: '1password-bin'
 
       - name: Validate SRCINFO
         id: validate-srcinfo
