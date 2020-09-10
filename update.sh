@@ -50,3 +50,20 @@ package() {
 echo "\n\nPKGBUILD:\n"
 
 cat 1password-bin/PKGBUILD
+
+echo "pkgbase = 1password-bin
+	pkgdesc = Password manager and secure wallet
+	pkgver = ${AUR_VERSION}
+	pkgrel = 1
+	url = https://1password.com/
+	arch = x86_64
+	license = custom:LicenseRef-1Password-Proprietary
+	depends = libxss
+	depends = nss
+	depends = gtk3
+	options = !strip
+	source = https://onepassword.s3.amazonaws.com/linux/debian/pool/main/1/1password/1password-${VERSION}.deb
+	sha256sums = ${CHECKSUM}
+
+pkgname = 1password-bin
+" > 1password-bin/.SRCINFO
