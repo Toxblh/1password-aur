@@ -58,8 +58,8 @@ echo "pkgbase = 1password-bin
 	arch = x86_64
 	license = custom:LicenseRef-1Password-Proprietary
 	depends = libxss
-	depends = nss
 	depends = gtk3
+	depends = nss
 	source = https://onepassword.s3.amazonaws.com/linux/debian/pool/main/1/1password/1password-${VERSION}.deb
 	sha256sums = ${CHECKSUM}
 
