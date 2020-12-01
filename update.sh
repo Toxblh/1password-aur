@@ -1,26 +1,25 @@
 # Version of app
-VERSION=`curl -s https://onepassword.s3.amazonaws.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(Filename: ).*1password-\K([a-z0-9\.-])+\d+" | head -n 1`
+VERSION=`curl -s https://downloads.1password.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(Filename: ).*1password-\K([a-z0-9\.-])+\d+" | head -n 1`
 AUR_VERSION=`echo $VERSION | grep -Po "(\d+\.)+\d+"`
 
 # Filepath
-# https://onepassword.s3.amazonaws.com/linux/debian/${path}
-FILEPATH=`curl -s https://onepassword.s3.amazonaws.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(Filename: )\K(.)*" | head -n 1`
+# https://downloads.1password.com/linux/debian/${path}
+FILEPATH=`curl -s https://downloads.1password.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(Filename: )\K(.)*" | head -n 1`
 
 # SHA256
-CHECKSUM=`curl -s https://onepassword.s3.amazonaws.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(SHA256: )\K(.)*" | head -n 1`
+CHECKSUM=`curl -s https://downloads.1password.com/linux/debian/dists/edge/main/binary-amd64/Packages | grep -Po "(SHA256: )\K(.)*" | head -n 1`
 
 echo "
 {
     \"aur-version\": \"${AUR_VERSION}\",
     \"version\": \"${VERSION}\",
-    \"filebase\": \"https://onepassword.s3.amazonaws.com/linux/debian\",
+    \"filebase\": \"https://downloads.1password.com/linux/debian\",
     \"filedeb\": \"${FILEPATH}\",
-    \"filepath\": \"https://onepassword.s3.amazonaws.com/linux/debian/pool/main/1/1password/1password-${VERSION}.deb\",
+    \"filepath\": \"https://downloads.1password.com/linux/debian/pool/main/1/1password/1password-${VERSION}.deb\",
     \"sha256\": \"${CHECKSUM}\"
 }"
 
-echo "# Maintainer: Alexander Bruegmann <mail[at]abruegmann[dot]eu>
-# Contributor: Anton Palgunov <toxblh@gmail.com>
+echo "# Maintainer: Anton Palgunov <toxblh@gmail.com>
 
 pkgname=1password-bin
 _pkgname=1Password
@@ -33,8 +32,9 @@ arch=('x86_64')
 depends=('libxss' 'gtk3' 'nss')
 license=('custom:LicenseRef-1Password-Proprietary')
 url='https://1password.com/'
-source=(\"https://onepassword.s3.amazonaws.com/linux/debian/pool/main/1/1password/1password-\$_pkgver.deb\")
+source=(\"https://downloads.1password.com/linux/debian/pool/main/1/1password/1password-\$_pkgver.deb\")
 sha256sums=('${CHECKSUM}')
+validpgpkeys=('3FEF9748469ADBE15DA7CA80AC2D62742012EA22')
 
 package() {
   bsdtar -xv -C \"\${pkgdir}\" -f \"\${srcdir}/data.tar.xz\"
@@ -60,7 +60,8 @@ echo "pkgbase = 1password-bin
 	depends = libxss
 	depends = gtk3
 	depends = nss
-	source = https://onepassword.s3.amazonaws.com/linux/debian/pool/main/1/1password/1password-${VERSION}.deb
+	source = https://downloads.1password.com/linux/debian/pool/main/1/1password/1password-${VERSION}.deb
+	validpgpkeys = 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
 	sha256sums = ${CHECKSUM}
 
 pkgname = 1password-bin
