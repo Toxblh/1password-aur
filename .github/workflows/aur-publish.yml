@@ -1,14 +1,13 @@
 name: aur-publish
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - "1password-bin/**"
+  pull_request:
+    types: [closed]
 
 jobs:
   aur-publish:
+    if: github.event.pull_request.merged == true
+
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
