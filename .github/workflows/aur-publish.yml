@@ -6,13 +6,12 @@ on:
 
 jobs:
   aur-publish:
-    if: github.event.pull_request.merged == true
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         
       - name: Publish AUR package
+        if: github.event.pull_request.merged == true
         uses: KSXGitHub/github-actions-deploy-aur@master
         with:
           pkgname: 1password-bin
