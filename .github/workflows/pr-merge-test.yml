@@ -1,0 +1,17 @@
+name: PR
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  merged:
+    runs-on: ubuntu-20.04
+    if: github.event.pull_request.merged == true
+    steps:
+      - run: echo "MERGED!"
+  not-merged:
+    runs-on: ubuntu-20.04
+    if: github.event.pull_request.merged == false
+    steps:
+      - run: echo "NOT MERGED!"
