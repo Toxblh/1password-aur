@@ -8,9 +8,9 @@ pkgbase = 1password-bin
 	depends = libxss
 	depends = gtk3
 	depends = nss
-	source = https://downloads.1password.com/linux/debian/pool/main/1/1password/1password-8.0.33-13.deb
+	source = https://downloads.1password.com/linux/debian/pool/main/1/1password/1password-8.0.33-26.deb
 	validpgpkeys = 3FEF9748469ADBE15DA7CA80AC2D62742012EA22
-	sha256sums = b3c41f607d7596b78fadbbeec3d91665d17ce470ef84b970af370c48d64d0259
+	sha256sums = b6fc05a2ecb2cf2bcb38d72149e83aae9591e895bef6464f3827e942f0e69bc0
 
 pkgname = 1password-bin
 
